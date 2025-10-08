@@ -1,16 +1,16 @@
 {
-  "name": "slidev-starter-1",
+  "name": "filtering-as-learning",
   "type": "module",
   "private": true,
   "scripts": {
     "build": "slidev build",
-    "dev": "slidev --base /slidev-starter-1/",
+    "dev": "slidev --base /filtering-as-learning/",
     "export": "slidev export"
   },
   "dependencies": {
     "@slidev/cli": "catalog:",
     "@slidev/theme-default": "catalog:",
-    "@slidev/theme-seriph": "catalog:",
+    "slidev-theme-academic": "^2.1.0",
     "vue": "catalog:"
   }
 }

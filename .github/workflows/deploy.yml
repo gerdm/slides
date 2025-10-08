@@ -20,6 +20,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          submodules: true
+          lfs: true
+          fetch-depth: 1
+
 
       - uses: actions/setup-node@v4
         with:

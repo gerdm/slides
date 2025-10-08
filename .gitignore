@@ -1,8 +1,38 @@
+# dependencies
 node_modules
-.DS_Store
+.pnp.*
+
+# build output
 dist
 *.local
-.vite-inspect
-.remote-assets
-components.d.ts
 _gh-pages
+.remote-assets
+.vite-inspect
+
+# editor / system
+.DS_Store
+*.log
+*.tmp
+*.swp
+*.swo
+Thumbs.db
+
+# Slidev-generated
+components.d.ts
+slidev-theme-*/dist
+
+# environment / local config
+.env
+.env.local
+.env.*.local
+
+# pnpm / workspace stuff
+.pnpm-debug.log
+pnpm-debug.log*
+.npmrc
+.cache/
+
+# IDEs
+.idea/
+.vscode/
+*.code-workspace
