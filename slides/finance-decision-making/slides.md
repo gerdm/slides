@@ -9,7 +9,6 @@ transition: none
 theme: academic
 coverAuthor: Gerardo Duran-Martin - OMI, University of Oxford
 coverAuthorUrl: https://grdm.io
-# class: text-white
 ---
 
 # Bayesian learning, adaptation, and decision making in financial environments
@@ -428,20 +427,20 @@ layout: center
 
 ## Results: Static TS
 
-![](./cadaptive_single_path_static.png)
+![](./public/cadaptive_single_path_static.png)
 
 ---
 
 ## Results: ALTS
 
-![](./cadaptive_single_path.png)
+![](./public/cadaptive_single_path.png)
 
 
 ---
 
 ## Results: well-specified and misspecified setups
 
-![](./pnl_plots_ALTS_vs_optimal_comparison.png)
+![](./public/pnl_plots_ALTS_vs_optimal_comparison.png)
 
 ---
 
@@ -449,4 +448,4 @@ layout: center
 
 * Easy in principle, unstable in practice (ongoing work).
 
-![](./cum_rewards_rl.png)
+![](./public/cum_rewards_rl.png)
