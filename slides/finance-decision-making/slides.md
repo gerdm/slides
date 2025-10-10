@@ -66,17 +66,16 @@ $$
     \underbrace{s_1, a_1, r_1}_{\data_1}, \underbrace{s_2, a_2, r_2}_{\data_2} \ldots, 
 $$
 
-The environment $p_{\rm env}$ is unknown to the agent and the **agent does not model it** (model-free / no planning).
+The environment $p_{\rm env}$ is unknown to the agent and the **agent does not model it** (model-free RL / no planning).
 
-<!-- | Env | reward $(r_t)$ | state $(s_t)$ | method
-| --- | --- | --- | --- |
-| market maker | ... | inventory, cash | RL |
-| market maker with negligible volume | ... | volume imbalance, inventory | Bandit |
-| Trading agents: choose among $K$ possible strategies | return of trading strategy e.o.d. | LOB, past performance, macroeconomic variables | Bandit
+Agent seeks to learn a parametric model of rewards and take decisions in a Bayesian way (through Thompson sampling).
 
-$-->
+---
+layout: center
+---
 
-Agent seeks to maximise the reward.
+# Learning
+
 
 ---
 
@@ -157,6 +156,11 @@ $$
 
 ![](./public/moons-c-static.gif)
 
+---
+layout: center
+---
+
+# Decision making
 
 ---
 
@@ -187,6 +191,12 @@ For $t \in \mathbb{N}$, having $s_{t+1} \in {\cal S}$ and $p(\vtheta \mid \data_
 1. $p(\vtheta \mid \data_{1:t+1}) \propto p(\vtheta \mid \data_{1:t})\,p(\data_{t+1} \mid \vtheta)$ // Update beliefs
 
 </div>
+
+---
+layout: center
+---
+
+# Adaptation
 
 
 ---
@@ -274,6 +284,7 @@ zoom: 0.9
 ---
 
 ## Finding a posterior density for the lookback
+Derivation resembles Bayesian online changepoint detection (BOCD) algorithm.
 
 Suppose
 $$
@@ -336,7 +347,7 @@ zoom: 0.95
 - **Asset price dynamics with regime-dependent drift:**
 
   $$
-  dS_t = \boldsymbol{m}_t^\top \boldsymbol{\mu} \,dt + \sigma\, dW_t,
+    dS_t = \boldsymbol{m}_t^\top \boldsymbol{\mu} \,dt + \sigma\, dW_t,
   $$
 
   where $\boldsymbol{m}_t$ is a Markov chain with transition matrix $\boldsymbol{\Delta}$, and drift vector $\boldsymbol{\mu}$.
@@ -349,9 +360,9 @@ zoom: 0.95
 - **Buy/sell order arrivals at depths** $\delta^b, \delta^a$ **follow**
 
   $$
-  \Lambda^b(\delta^b) = c \, e^{-\kappa \delta^b}, 
-  \quad
-  \Lambda^a(\delta^a) = c \, \boldsymbol{m}_t^\top \boldsymbol{\gamma} \, e^{-\kappa \delta^a},
+    \Lambda^b(\delta^b) = c \, e^{-\kappa \delta^b}, 
+    \quad
+    \Lambda^a(\delta^a) = c \, \boldsymbol{m}_t^\top \boldsymbol{\gamma} \, e^{-\kappa \delta^a},
   $$
 
   where $\boldsymbol{\gamma}$ is the imbalance vector.
@@ -363,8 +374,8 @@ zoom: 0.95
 - **Oracle objective:** maximize expected terminal wealth penalized by inventory risk:
 
   $$
-  u^{\boldsymbol{\Delta}}(t,x,q,e^i) =
-  \mathbb{E}_t\!\left[x_T + q_T(S_T - \alpha q_T) - \phi \int_t^T q_s^2 \, ds \right],
+    u^{\boldsymbol{\Delta}}(t,x,q,e^i) =
+    \mathbb{E}_t\!\left[x_T + q_T(S_T - \alpha q_T) - \phi \int_t^T q_s^2 \, ds \right],
   $$
 
   where $q_t$ is the inventory and $x_t$ is the cash.
