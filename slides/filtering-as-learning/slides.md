@@ -1,10 +1,10 @@
 ---
 layout: cover
 mdc: true
-background: https://github.com/user-attachments/assets/39ac14be-162c-4fd4-a8da-6d29f027f9a8
+background: /small-discrete-dynamical-system.png
 author: Gerardo Duran
 date: 2025-09-10
-title: Bayesian filtering for continual learning
+title: Bayesian filtering for online continual learning
 info: Kalman filtering for Bayesian continual learning
 transition: none
 theme: academic
@@ -809,12 +809,8 @@ This allows:
 layout: end
 ---
 
-$$
-  p({\rm END}) = 1
-$$
-
 
 ```
-grdm.io
+END | grdm.io
 ```
 
