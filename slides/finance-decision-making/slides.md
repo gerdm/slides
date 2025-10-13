@@ -3,10 +3,11 @@ layout: cover
 mdc: true
 author: Gerardo Duran-Martin
 date: 2025-10-10
-title: Bayesian adaptation and sequential decision making in financial environments
-info: Kalman filtering for Bayesian continual learning
+title: Financial Bayesian adaptation and decision making
+info: Learning and adapting in non-stationary financial environments.
 transition: none
 theme: academic
+background: /alts-pnl-comparison.png
 coverAuthor: Gerardo Duran-Martin - OMI, University of Oxford
 coverAuthorUrl: https://grdm.io
 ---
