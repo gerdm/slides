@@ -14,9 +14,10 @@ coverBackgroundUrl: /presentation.png
 class: text-white
 ---
 
-# From spaceships to neural networks
 
-Bayesian filtering as the language of online continual learning
+# Bayesian filtering for online continual learning
+
+From spaceships to neural networks
 
 
 ---
@@ -486,7 +487,7 @@ $\alpha, \beta, \lambda > 0$.
 
 $$
   {\color{red} \vmu_T}
-  = \argmin_{\vtheta} \|\vy_t - \vx_t^\intercal\vtheta\|_2^2 + \lambda\,\|\vtheta\|_2^2
+  = \argmin_{\vtheta} \frac{1}{T}\sum_{t=1}^T\|\vy_t - \vx_t^\intercal\vtheta\|_2^2 + \lambda\,\|\vtheta\|_2^2
 $$
 
 <v-click>
@@ -780,7 +781,7 @@ Still unresolved.
 
 ## A new look at Bayesian filtering
 
-We can leverage existing filtering tools (and derive new filtering-like tools) to tackle these problems!
+We can leverage existing filtering tools (and derive new filtering-like tools) to tackle **sensitivity**, **adaptivity**, and **scalability**.
 
 | Filtering | latent $\vtheta_t$ | example | inductive bias for predictive model |
 | --- | --- | --- | --- |
@@ -804,6 +805,65 @@ This allows:
 1. Viewing many open problems in AI/ML under a single lens.
 
 </v-clicks>
+
+
+---
+
+## Addendum: what about uncertainty quantification?
+
+* A Big problem of Bayesian neural networks are misspecified priors and likelihoods that
+yield misspecified posteriors $p(\vtheta \mid \data_{1:t})$ --- not calibrated uncertainty quantification (UQ).
+
+$$
+    \E[h(\vtheta, x_{t+1}) \mid \data_{1:t}]
+    = \int h(\vtheta, x_{t+1}) p(\vtheta \mid \data_{1:t})
+    \approx \frac{1}{S}\sum_{s=1}^S h\left(\vtheta^{(s)}, x_{t+1}\right).
+$$
+
+![](./figures/ekf-posterior-sampling-samples.png){style="max-width:70%" class="horizontal-center"}
+
+---
+
+## The predictive view of Bayes
+* At the center of being _Bayesian_ is the posterior predictive, not the posterior over model parameters. <sup>1</sup>
+
+$$
+\begin{aligned}
+    p(y_{t+1} \mid x_{t+1},\,\data_{1:t})
+    &= \int p(y_{t+1}, \vtheta_t \mid x_{t+1},\,\data_{1:t})\\
+    &= \int p(\vtheta_t \mid \data_{1:t})\,p(\vy_{t+1} \mid \vtheta_t,\, x_{t+1}) \d\vtheta_t\\
+    &= \mathcal{N}\,\left(
+        y_{t+1}
+        \mid
+        h(\vtheta_{t|t},\,\vx_{t+1}),\;\;
+        \underbrace{\vJ_{t+1}\,\vSigma_{t}\,\vJ_{t+1}^\intercal}_{\text{epistemic}}
+        + \underbrace{r^2}_{\text{aleatoric}}
+    \right).
+\end{aligned}
+$$
+
+The last equality follows under a linearised neural network assumption.<sup>2</sup>
+
+<Footnotes separator>
+  <Footnote :number=1>
+  Holmes, Chris C., and Stephen G. Walker. "Statistical inference with exchangeability and martingales." Philosophical Transactions of the Royal Society A (2023).
+  </Footnote>
+  <Footnote :number=2>
+  Duran-Martin, Gerardo, et al. "Martingale Posterior Neural Networks for Fast Sequential Decision Making." NeurIPS (2025).
+  </Footnote>
+</Footnotes>
+
+---
+
+## A new method: HiLoFi
+
+* Bayesian uncertainty quantification.
+* Frequentist learning (filtering).
+* Outperforms rival methods in sequential decision making tasks, e.g., neural bandits.
+
+![](./figures/hilofi-predictive-sampling-samples.png){style="max-width:75%" class="horizontal-center"}
+
+
 
 ---
 layout: end

@@ -56,6 +56,7 @@ export default defineKatexSetup(() => {
       "\\vx": "{\\mathbf x}",
       "\\vy": "{\\mathbf y}",
       "\\vz": "{\\mathbf z}",
+      "\\E": "\\mathbb{E}",
       "\\vzero": "{\\mathbf 0}",
       "\\vone": "{\\mathbf 1}",
       "\\cov": "{\\rm Cov}",
