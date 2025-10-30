@@ -79,7 +79,7 @@ Bayes is not (only) for uncertainty;  Bayes for belief (information) propagation
 layout: two-cols-header
 ---
 
-# Part I: spaceships and filters — the birth of the Kalman filter (1960s)
+# Part I: spaceships and squared errors — the birth of the Kalman filter (1960s)
 Tracking and forecasting the position of a spaceship.
 
 ::left::
@@ -816,7 +816,7 @@ yield misspecified posteriors $p(\vtheta \mid \data_{1:t})$ --- not calibrated u
 
 $$
     \E[h(\vtheta, x_{t+1}) \mid \data_{1:t}]
-    = \int h(\vtheta, x_{t+1}) p(\vtheta \mid \data_{1:t})
+    = \int h(\vtheta, x_{t+1}) p(\vtheta \mid \data_{1:t}) \d\vtheta
     \approx \frac{1}{S}\sum_{s=1}^S h\left(\vtheta^{(s)}, x_{t+1}\right).
 $$
 
@@ -830,7 +830,7 @@ $$
 $$
 \begin{aligned}
     p(y_{t+1} \mid x_{t+1},\,\data_{1:t})
-    &= \int p(y_{t+1}, \vtheta_t \mid x_{t+1},\,\data_{1:t})\\
+    &= \int p(y_{t+1}, \vtheta_t \mid x_{t+1},\,\data_{1:t}) \d\vtheta\\
     &= \int p(\vtheta_t \mid \data_{1:t})\,p(\vy_{t+1} \mid \vtheta_t,\, x_{t+1}) \d\vtheta_t\\
     &= \mathcal{N}\,\left(
         y_{t+1}
