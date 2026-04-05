@@ -1,0 +1,94 @@
+/* style.css */
+
+:root {
+  --bone-blue: #2563eb;
+  --bone-blue-soft: #dbeafe;
+  --bone-blue-deep: #1e3a8a;
+  --bone-border: #93c5fd;
+  --bone-text: #0f172a;
+}
+
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.horizontal-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.bottom-right {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.float-left {
+  float: left;
+}
+
+/* Make font smaller */
+.footnotes {
+  font-size: 0.6em;
+  line-height: 1.25;
+  max-width: 100%;
+  max-height: 5em;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  padding-right: 0.2em;
+}
+
+/* Ensure long references (especially URLs) wrap instead of overflowing. */
+.footnotes,
+.footnotes * {
+  white-space: normal !important;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+li.footnote-item {
+  margin: 0.15em 0;
+}
+
+.bone-callout {
+  margin-top: 1rem;
+  padding: 1rem 1.25rem;
+  border-left: 4px solid var(--bone-blue);
+  border-radius: 0.6rem;
+  background: linear-gradient(135deg, #eff6ff 0%, var(--bone-blue-soft) 100%);
+  box-shadow: 0 8px 24px rgba(30, 58, 138, 0.08);
+}
+
+.bone-focus {
+  margin-top: 1rem;
+  padding: 0.65rem 0.9rem;
+  border: 1px solid var(--bone-border);
+  border-radius: 0.5rem;
+  background: #f8fbff;
+  color: var(--bone-blue-deep);
+}
+
+.bone-card {
+  margin-top: 0.8rem;
+  padding: 1rem 1.2rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.7rem;
+  background: #fbfdff;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.05);
+}
+
+.bone-card ul {
+  margin-top: 0.4rem;
+}
+
+.bone-caption {
+  margin-top: 0.45rem;
+  color: #334155;
+  font-size: 0.92em;
+  line-height: 1.4;
+}

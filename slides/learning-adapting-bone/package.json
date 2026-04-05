@@ -1,0 +1,16 @@
+{
+  "name": "non-stationarity-ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "slidev build",
+    "dev": "slidev --base /non-stationarity-ts/",
+    "export": "slidev export"
+  },
+  "dependencies": {
+    "@slidev/cli": "catalog:",
+    "@slidev/theme-default": "catalog:",
+    "slidev-theme-academic": "^2.1.0",
+    "vue": "catalog:"
+  }
+}
