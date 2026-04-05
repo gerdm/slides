@@ -1,1 +1,6 @@
 baseUrl: /slides
+exclude:
+  - node_modules
+  - .git
+  - _gh-pages
+  - dist
