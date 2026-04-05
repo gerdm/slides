@@ -1,30 +1,100 @@
-# Slidev Workspace Starter
+# Slides
 
-This starter helps you manage multiple **Slidev** presentations in a single monorepo. Since each Slidev project is an independent package, using a **pnpm workspace** makes it easy to manage, develop, and deploy them together.
+A monorepo of [Slidev](https://sli.dev) presentations managed with [slidev-workspace](https://github.com/leochiu-a/slidev-workspace) and pnpm workspaces. Each presentation lives under `slides/<name>/` as an independent package. A single GitHub Actions workflow builds and deploys all of them to GitHub Pages.
 
-## ✨ Features
+## 🚀 Local development
 
-- **Built with slidev-workspace**: Powered by [`slidev-workspace`](https://github.com/leochiu-a/slidev-workspace), a package that simplifies the management of slides workflow.
-- **Workspace-friendly**: Manage all your Slidev presentations as separate packages within a single workspace.
-- **Automated deployment**: Use GitHub Actions to automatically deploy each presentation to GitHub Pages.
-- **Easy to scale**: Quickly add new Slidev projects by creating new packages in the workspace.
+```bash
+pnpm install
+pnpm preview   # starts the workspace index on http://localhost:3000/slides
+               # and a Slidev dev server per presentation on :3001, :3002, …
+```
 
-## 🚀 Quick Start
+## ➕ Creating a new presentation
 
-1. Clone the repository and install dependencies
+Use the custom `new-slidev` command **from inside the `slides/` directory**:
 
-  ```bash
-  git clone https://github.com/leochiu-a/slidev-workspace-starter.git
-  cd slidev-workspace-starter
-  pnpm install
-  ```
+```bash
+cd slides
+new-slidev "My Talk Title"
+```
 
-2. Change `base` of `slidev-workspace.yaml`. This is the base path for GitHub Pages, typically the same as the repository name.
+This scaffolds a new package under `slides/<slugified-name>/` with the correct `package.json`, `slides.md`, `style.css`, and `setup/katex.ts`.
 
-3. change `BASE_PATH` of `.github/workflows/deploy.yml` to the same as `base` of `slidev-workspace.yaml`.
+### ⚠️ Required step after scaffolding
 
-4. Set up the GitHub Pages build and deploy based on GitHub Actions. `Settings > Pages > Build and deployment > Source > GitHub Actions`
+The script writes a `package.json` that uses `catalog:` dependencies. You must **run `pnpm install` from the workspace root** afterwards to update `pnpm-lock.yaml` and create the correct symlinks:
 
-## 📦 Demo
+```bash
+cd ..          # back to workspace root
+pnpm install
+```
 
-Check out the live demo: https://leochiu-a.github.io/slidev-workspace-starter/
+Skipping this causes the CI build to fail with `ERR_PNPM_OUTDATED_LOCKFILE`.
+
+### Checklist after running `new-slidev`
+
+- [ ] Run `pnpm install` from the workspace root (see above).
+- [ ] The `dev` script in `package.json` is set to `slidev --base /<name>/`. Verify that `<name>` **matches the directory name exactly** — the workspace uses the directory name to construct image URLs. If they differ, background images will 404.
+- [ ] Place any background or image assets in `slides/<name>/public/` and reference them as `/filename.png` in `slides.md`.
+- [ ] Commit **both** the new `slides/<name>/` directory **and** the updated `pnpm-lock.yaml`.
+
+## ✍️ Writing slides — known gotchas
+
+### LaTeX and Vue template syntax conflict
+
+Slidev compiles `slides.md` through Vue's template engine before rendering LaTeX. **Double curly braces `{{ }}` are intercepted by Vue** as template interpolations, causing a build error:
+
+```
+Error parsing JavaScript expression: Expecting Unicode escape sequence \uXXXX
+```
+
+**Avoid double braces in LaTeX.** Use single braces — they are semantically identical in LaTeX:
+
+```diff
+- y_t \sim p_{{\rm env}}(\cdot \mid x_t)   ❌ Vue intercepts {{ }}
++ y_t \sim p_{\rm env}(\cdot \mid x_t)     ✓ Safe
+```
+
+## 🏗️ Repository structure
+
+```
+slides/
+├── slidev-workspace.yaml     # baseUrl + exclude list
+├── pnpm-workspace.yaml       # workspace globs
+├── pnpm-lock.yaml            # must be kept up to date
+├── slides/
+│   ├── <presentation-a>/
+│   │   ├── package.json      # name, dev/build scripts, deps
+│   │   ├── slides.md
+│   │   ├── style.css
+│   │   ├── setup/katex.ts
+│   │   └── public/           # static assets (images, etc.)
+│   └── <presentation-b>/
+│       └── …
+└── .github/workflows/
+    └── deploy.yml
+```
+
+## 🔧 `slidev-workspace.yaml`
+
+```yaml
+baseUrl: /slides
+exclude:
+  - node_modules
+  - .git
+  - _gh-pages
+  - dist
+```
+
+`exclude` prevents the workspace from trying to scan output/build directories as slide packages.
+
+## 🚢 Deployment
+
+Pushing to `main` triggers the **Deploy pages** GitHub Actions workflow which:
+
+1. Installs dependencies (`pnpm install --frozen-lockfile`).
+2. Builds every presentation under `slides/`.
+3. Deploys the workspace index + all built presentations to GitHub Pages.
+
+The `pnpm-lock.yaml` must be committed and up to date, or the install step will fail.
