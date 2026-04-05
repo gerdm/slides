@@ -12,21 +12,19 @@ pnpm preview   # starts the workspace index on http://localhost:3000/slides
 
 ## ➕ Creating a new presentation
 
-Use the custom `new-slidev` command **from inside the `slides/` directory**:
+Use the `new-slidev` script **from the workspace root**:
 
 ```bash
-cd slides
-new-slidev "My Talk Title"
+pnpm new-slidev "My Talk Title"
 ```
 
-This scaffolds a new package under `slides/<slugified-name>/` with the correct `package.json`, `slides.md`, `style.css`, and `setup/katex.ts`.
+This scaffolds a new package under `slides/<slugified-name>/` with the correct `package.json`, `slides.md`, `style.css`, `setup/katex.ts`, and a `public/` directory for assets.
 
 ### ⚠️ Required step after scaffolding
 
-The script writes a `package.json` that uses `catalog:` dependencies. You must **run `pnpm install` from the workspace root** afterwards to update `pnpm-lock.yaml` and create the correct symlinks:
+The new package uses `catalog:` dependencies. You must **run `pnpm install` from the workspace root** afterwards to update `pnpm-lock.yaml` and create the correct symlinks:
 
 ```bash
-cd ..          # back to workspace root
 pnpm install
 ```
 
