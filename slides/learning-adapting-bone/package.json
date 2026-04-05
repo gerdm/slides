@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "slidev build",
-    "dev": "slidev --base /non-stationarity-ts/",
+    "dev": "slidev --base /learning-adapting-bone/",
     "export": "slidev export"
   },
   "dependencies": {
