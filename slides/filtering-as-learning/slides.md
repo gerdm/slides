@@ -2,7 +2,7 @@
 layout: cover
 mdc: true
 background: /small-discrete-dynamical-system.png
-author: Gerardo Duran
+author: Gerardo Duran-Martin
 date: 2025-09-10
 title: Bayesian filtering for online continual learning
 info: Kalman filtering for Bayesian continual learning

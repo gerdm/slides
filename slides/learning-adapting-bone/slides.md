@@ -1,9 +1,10 @@
 ---
 layout: cover
 mdc: true
+background: /small-ts-changes.png
+author: Gerardo Duran-Martin
 title: "Online Learning in Non-stationary Environments"
 info: "A tutorial on BONE: Bayesian Online Learning in Non-stationary Environments"
-background: /small-ts-changes.png
 transition: none
 theme: academic
 coverAuthor: Gerardo Duran-Martin - OMI, University of Oxford
