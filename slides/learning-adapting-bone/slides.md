@@ -673,6 +673,10 @@ zoom: 0.9
 ---
 
 ## Choices (M.1-.3), (A.1-.2) in the unknown-regime setting
+
+
+<div v-click>
+
 (For all $\psi_t \in \Psi_t$). Infer the latent auxiliary variable from data:
 
 $$
@@ -684,6 +688,10 @@ p_{\vv_t}(\psi_t) = p(\psi_t \mid \data_{1:t}).
 }
 $$
 
+</div>
+
+<div v-click>
+
 At each timestep, we approximate a one-step-ahead predictive distribution:
 $$
 \tag{M.1}
@@ -693,7 +701,9 @@ p_{\vb_{t}, \vv_t}(y_{t+1} \mid \vx_{t+1})
 }
 $$
 
+</div>
 
+<div v-click>
 
 For (M.3), adapt regime-conditioned beliefs:
 $$
@@ -703,6 +713,10 @@ $$
 }
 $$
 
+</div>
+
+<div v-click>
+
 For (A.1), update regime-conditioned beliefs:
 $$
 \tag{A.1}
@@ -711,6 +725,10 @@ $$
 }
 $$
 
+</div>
+
+<div v-click>
+
 For (A.2), update auxiliary beliefs over regimes:
 $$
 \tag{A.2}
@@ -718,6 +736,7 @@ $$
 \vv_t \gets {\rm update.aux}(\vv_{t-1}, \{\vb_t^{\psi_t}\}, \data_t).
 }
 $$
+</div>
 
 
 ---
@@ -761,7 +780,7 @@ Depending on the choice of $\psi_t$, we can recover different methods in the lit
 
 ---
 
-## A simple choice for $\vv_t$ (discrete Markovian $\psi_t$)
+## A convenient choice for $\vv_t$ (discrete Markovian $\psi_t$)
 
 <div v-click>
 
@@ -1191,8 +1210,8 @@ As a result, the agent must continuously revise its beliefs rather than convergi
 <div v-click>
 <div class="bone-focus">
 
-* $\vx_t$: context at time $t$ affects $y_t$.
-* $\psi_t$: affects $\vb_t$ and thus the adaptation mechanism.
+* $\vx_t$, $\theta$: features and parameters model $y_t$.
+* $\psi_t$: modulates $\vb_t$ and thus the adaptation mechanism.
 
 </div>
 </div>
