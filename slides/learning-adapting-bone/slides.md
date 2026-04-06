@@ -386,6 +386,8 @@ $$
 
 ## Choices (M.1), (M.2), (M.3), and (A.1) in the dynamic setting
 
+<div v-click>
+
 For (M.2), choose the auxiliary variable
 $$
 \tag{M.2}
@@ -393,6 +395,10 @@ $$
 \psi_t \in \Psi_t,
 }
 $$
+
+</div>
+
+<div v-click>
 
 At each timestep, we approximate a one-step-ahead predictive distribution:
 
@@ -406,7 +412,9 @@ $$
 
 parametrised by a regime-conditioned belief state $\vb_t^{\psi_{t+1}}$.
 
+</div>
 
+<div v-click>
 
 Adapt beliefs to the incoming regime $\psi_t$: <sup>1</sup>
 $$
@@ -416,6 +424,10 @@ $$
 }
 $$
 
+</div>
+
+<div v-click>
+
 Update beliefs after observing $\data_t$:
 $$
 \tag{A.1}
@@ -423,6 +435,8 @@ $$
      \vb_t \gets {\rm update}(\vb_{t-1}^{\psi_t}, \data_t).
 }
 $$
+
+</div>
 
 <Footnotes separator>
      <Footnote :number=1>
