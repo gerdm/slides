@@ -36,3 +36,6 @@ pnpm-debug.log*
 .idea/
 .vscode/
 *.code-workspace
+
+# Copilot agent skills (fetched from skills-lock.json)
+.agents/
