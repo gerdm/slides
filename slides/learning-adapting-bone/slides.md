@@ -633,7 +633,7 @@ layout: center
 
 ---
 
-# _Dynamic_ streaming setup (known regimes)
+# _Dynamic_ streaming setup (unknown regimes)
 
 Datapoints arrive one at a time.
 At each step $t$, we observe $\vx_t \in \reals^M$ and then $y_t \in \reals^o$.
